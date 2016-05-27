@@ -9,6 +9,7 @@
 
 import stlport ;
 import modules ;
+using testing ;
 
 local NO_BZIP2 = [ modules.peek : NO_BZIP2 ] ;
 local NO_ZLIB = [ modules.peek : NO_ZLIB ] ;
