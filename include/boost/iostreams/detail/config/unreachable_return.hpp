@@ -13,8 +13,7 @@
 
 #include <boost/config.hpp>
 
-// If Boost.Exception has BOOST_ATTRIBUTE_NORETURN
-#if defined(_MSC_VER) || defined(__GNUC__)
+#if !defined(BOOST_NO_NORETURN)
 #define BOOST_IOSTREAMS_UNREACHABLE_RETURN(x) \
     BOOST_UNREACHABLE_RETURN(x)
 #else
