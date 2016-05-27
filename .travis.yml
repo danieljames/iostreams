@@ -35,26 +35,26 @@ matrix:
 
 before_script:
     - |
-        cat <<EOL > ~/user-config.jam
-        using gcc : : g++-4.8 ;
-        using gcc : std11 : g++-4.8 --std=c++11 ;
-        using clang : : clang++ ;
-        using clang : std11 : clang++ --std=c++11 ;
-        EOL
+      cat <<EOL > ~/user-config.jam
+      using gcc : : g++-4.8 ;
+      using gcc : std11 : g++-4.8 --std=c++11 ;
+      using clang : : clang++ ;
+      using clang : std11 : clang++ --std=c++11 ;
+      EOL
     - |
-        cat <<EOL > Jamroot.jam
-        # Fake boost-install, we don't want to install anything, but need it to
-        # compile the Jamfile.
-        rule boost-install ( libraries * ) { }
-        
-        # Create targets for the dependencies.
-        project /boost/test ;
-        lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;
-        project /boost/filesystem ;
-        lib boost_filesystem : : <name>libboost_filesystem ;
-        project /boost/regex ;
-        lib boost_regex : : <name>libboost_regex ;
-        EOL
+      cat <<EOL > Jamroot.jam
+      # Fake boost-install, we don't want to install anything, but need it to
+      # compile the Jamfile.
+      rule boost-install ( libraries * ) { }
+      
+      # Create targets for the dependencies.
+      project /boost/test ;
+      lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;
+      project /boost/filesystem ;
+      lib boost_filesystem : : <name>libboost_filesystem ;
+      project /boost/regex ;
+      lib boost_regex : : <name>libboost_regex ;
+      EOL
 
 script:
     - cd ${TRAVIS_BUILD_DIR}
