@@ -46,11 +46,11 @@ before_script:
     - |
         echo 'rule boost-install ( libraries * ) { }' > Jamroot.jam
         echo 'project /boost/test ;' >> Jamroot.jam
-        echo 'lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;' >> Jamroot.jam
+        echo 'lib boost_unit_test_framework : : <name>boost_unit_test_framework ;' >> Jamroot.jam
         echo 'project /boost/filesystem ;' >> Jamroot.jam
-        echo 'lib boost_filesystem : : <name>libboost_filesystem ;' >> Jamroot.jam
+        echo 'lib boost_filesystem : : <name>boost_filesystem ;' >> Jamroot.jam
         echo 'project /boost/regex ;' >> Jamroot.jam
-        echo 'lib boost_regex : : <name>libboost_regex ;' >> Jamroot.jam
+        echo 'lib boost_regex : : <name>boost_regex ;' >> Jamroot.jam
 
 script:
     - cd ${TRAVIS_BUILD_DIR}
