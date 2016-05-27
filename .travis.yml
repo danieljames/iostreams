@@ -46,7 +46,7 @@ before_script:
         # Fake boost-install, we don't want to install anything, but need it to
         # compile the Jamfile.
         rule boost-install ( libraries * ) { }
-
+        
         # Create targets for the dependencies.
         project /boost/test ;
         lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;
@@ -57,5 +57,7 @@ before_script:
         EOL
 
 script:
+    - cd ${TRAVIS_BUILD_DIR}
+    - cat Jamroot.jam
     - cd ${TRAVIS_BUILD_DIR}/test
     - bjam -q ${BJAM_TOOLSET} include=${TRAVIS_BUILD_DIR}/include
