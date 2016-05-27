@@ -27,15 +27,15 @@ matrix:
       - compiler: gcc
         env: BJAM_TOOLSET=gcc
         env: NO_BZIP2=1
-      #- compiler: gcc
-      #  env: BJAM_TOOLSET=gcc-std11
-      #  env: NO_BZIP2=1
-      #- compiler: clang
-      #  env: BJAM_TOOLSET=clang
-      #  env: NO_BZIP2=1
-      #- compiler: clang
-      #  env: BJAM_TOOLSET=clang-std11
-      #  env: NO_BZIP2=1
+      - compiler: gcc
+        env: BJAM_TOOLSET=gcc-std11
+        env: NO_BZIP2=1
+      - compiler: clang
+        env: BJAM_TOOLSET=clang
+        env: NO_BZIP2=1
+      - compiler: clang
+        env: BJAM_TOOLSET=clang-std11
+        env: NO_BZIP2=1
 
 before_script:
     - |
