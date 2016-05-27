@@ -26,29 +26,31 @@ matrix:
     include:
       - compiler: gcc
         env: BJAM_TOOLSET=gcc
+        env: NO_BZIP2=1
       #- compiler: gcc
       #  env: BJAM_TOOLSET=gcc-std11
+      #  env: NO_BZIP2=1
       #- compiler: clang
       #  env: BJAM_TOOLSET=clang
+      #  env: NO_BZIP2=1
       #- compiler: clang
       #  env: BJAM_TOOLSET=clang-std11
+      #  env: NO_BZIP2=1
 
 before_script:
     - |
-      cat <<EOL > ~/user-config.jam
-      using gcc : : g++-4.8 ;
-      using gcc : std11 : g++-4.8 --std=c++11 ;
-      using clang : : clang++ ;
-      using clang : std11 : clang++ --std=c++11 ;
-      EOL
-    - "echo 'rule boost-install ( libraries * ) { }' > Jamroot.jam"
-    - "echo 'project /boost/test ;' >> Jamroot.jam"
-    - "echo 'lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;' >> Jamroot.jam"
-    - "echo 'project /boost/filesystem ;' >> Jamroot.jam"
-    - "echo 'lib boost_filesystem : : <name>libboost_filesystem ;' >> Jamroot.jam"
-    - "echo 'project /boost/regex ;' >> Jamroot.jam"
-    - "echo 'lib boost_regex : : <name>libboost_regex ;' >> Jamroot.jam"
-
+        echo "using gcc : : g++-4.8 ;" > ~/user-config.jam
+        echo "using gcc : std11 : g++-4.8 --std=c++11 ;" >> ~/user-config.jam
+        echo "using clang : : clang++ ;" >> ~/user-config.jam
+        echo "using clang : std11 : clang++ --std=c++11 ;" >> ~/user-config.jam
+    - |
+        echo 'rule boost-install ( libraries * ) { }' > Jamroot.jam
+        echo 'project /boost/test ;' >> Jamroot.jam
+        echo 'lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;' >> Jamroot.jam
+        echo 'project /boost/filesystem ;' >> Jamroot.jam
+        echo 'lib boost_filesystem : : <name>libboost_filesystem ;' >> Jamroot.jam
+        echo 'project /boost/regex ;' >> Jamroot.jam
+        echo 'lib boost_regex : : <name>libboost_regex ;' >> Jamroot.jam
 
 script:
     - cd ${TRAVIS_BUILD_DIR}
