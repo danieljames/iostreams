@@ -41,20 +41,14 @@ before_script:
       using clang : : clang++ ;
       using clang : std11 : clang++ --std=c++11 ;
       EOL
-    - |
-      cat <<EOL > Jamroot.jam
-      # Fake boost-install, we don't want to install anything, but need it to
-      # compile the Jamfile.
-      rule boost-install ( libraries * ) { }
-      
-      # Create targets for the dependencies.
-      project /boost/test ;
-      lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;
-      project /boost/filesystem ;
-      lib boost_filesystem : : <name>libboost_filesystem ;
-      project /boost/regex ;
-      lib boost_regex : : <name>libboost_regex ;
-      EOL
+    - echo 'rule boost-install ( libraries * ) { }' > Jamroot.jam
+    - echo 'project /boost/test ;' >> Jamroot.jam
+    - echo 'lib boost_unit_test_framework : : <name>libboost_unit_test_framework ;' >> Jamroot.jam
+    - echo 'project /boost/filesystem ;' >> Jamroot.jam
+    - echo 'lib boost_filesystem : : <name>libboost_filesystem ;' >> Jamroot.jam
+    - echo 'project /boost/regex ;' >> Jamroot.jam
+    - echo 'lib boost_regex : : <name>libboost_regex ;' >> Jamroot.jam
+
 
 script:
     - cd ${TRAVIS_BUILD_DIR}
